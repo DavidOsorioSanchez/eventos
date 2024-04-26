@@ -1,6 +1,7 @@
 package com.riwi.apirest.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+import lombok.NoArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 import com.riwi.apirest.entity.Entidad;
 import com.riwi.apirest.service.service_abstracto.IService;
@@ -11,24 +12,21 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-
-
 
 
 @RestController
 @RequestMapping("/api/v1/event")
 @AllArgsConstructor
 public class EventoController {
-  
   @Autowired
   private final IService eventoService;
+
+
+  @GetMapping
+  public ResponseEntity<List<Entidad>>getAll(@RequestParam(defaultValue = "1") int page, @RequestParam(defaultValue = "3") int size){
+    return ResponseEntity.ok(this.eventoService.getAllByPages(page -1 , size).toList());
+  }
+
 
   @GetMapping
   public ResponseEntity<List<Entidad>> getAll() {
