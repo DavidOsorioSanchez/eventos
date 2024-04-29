@@ -13,6 +13,7 @@ import com.riwi.apirest.reposiory.repositorio;
 import com.riwi.apirest.service.service_abstracto.IService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,12 +26,6 @@ public class reunionService implements IService {
   @Override
   public Entidad save(Entidad entidad) {
     return this.objRepositorio.save(entidad);
-  }
-
-
-  @Override
-  public List<Entidad> getAll() {
-    return this.objRepositorio.findAll();
   }
 
   @Override
@@ -53,13 +48,8 @@ public class reunionService implements IService {
 
   @Override
   public Page<Entidad> getAllByPages(int page, int size) {
-    if (page < 0) {
-      page = 1;
-    }
-
-    // Crear objeto de paginación
-    PageRequest objPageable = PageRequest.of(page, size);
-
+    if (page < 0) {page = 0;}
+    Pageable objPageable = PageRequest.of(page, size);
     return this.objRepositorio.findAll(objPageable);
   }
 

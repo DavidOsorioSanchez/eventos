@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -18,7 +20,7 @@ public class Entidad {
   @GeneratedValue(strategy = GenerationType.UUID) 
   private String id;
   private String nombre;
-  private String fecha;
+  private LocalDate fecha;
   private String ubicaccion;
   private int capacidad;
 

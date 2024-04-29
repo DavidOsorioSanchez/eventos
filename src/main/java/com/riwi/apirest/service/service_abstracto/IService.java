@@ -12,8 +12,6 @@ public interface IService {
   
   public Entidad save(Entidad entidad);
 
-  public List<Entidad> getAll();
-
   public Entidad findById(String id);
 
   public void delete(String id);
